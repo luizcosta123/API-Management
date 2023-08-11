@@ -1,10 +1,12 @@
 # API-Management
 
-- Cada pessoa terá um id, nome, departamento e  lista de tarefas
+## Entidades
 
-- Cada tarefa terá id, título, descrição, prazo, departamento, duração, pessoa alocada e se já foi finalizado.
+- pessoa (id, nome, departamento e lista de tarefas)
 
-## Funcionalidades desejadas:
+- tarefa (id, título, descrição, prazo, departamento, duração, pessoa alocada e se já foi finalizado)
+
+## Funcionalidades desejadas
 
 - Adicionar um pessoa => (post/pessoas)
 
