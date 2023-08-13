@@ -17,6 +17,6 @@ public class PessoaNomePeriodoHorasDto {
 
     private LocalDate dataFim;
 
-    private int horasGastas;
+    private int totalHorasGastas;
 
 }
