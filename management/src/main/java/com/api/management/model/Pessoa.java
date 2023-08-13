@@ -26,7 +26,7 @@ public class Pessoa {
     private Departamento departamento;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "pessoaAlocada", cascade = CascadeType.ALL)
-    private List<Tarefa> listaDeTarefas = new ArrayList<>();
+    @OneToMany(mappedBy = "pessoaAlocada", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private List<Tarefa> tarefaList = new ArrayList<>();
 
 }
