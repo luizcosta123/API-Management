@@ -87,7 +87,7 @@ public class PessoaService {
         return pessoaHorasGastasDtoList;
     }
 
-    public List<PessoaNomePeriodoHorasDto> getAllPessoaPeriodoHorasGastas(PessoaNomePeriodoForm pessoaNomePeriodoForm) {
+    public List<PessoaNomePeriodoHorasDto> findAllPessoaPeriodoHorasGastas(PessoaNomePeriodoForm pessoaNomePeriodoForm) {
 
         List<Pessoa> pessoaList = pessoaRepository.findAllByNome(pessoaNomePeriodoForm.getNome());
 
@@ -110,7 +110,7 @@ public class PessoaService {
                     pessoaNomePeriodoHorasDto.setNome(pessoa.getNome());
                     pessoaNomePeriodoHorasDto.setDataInicio(pessoaNomePeriodoForm.getDataInicio());
                     pessoaNomePeriodoHorasDto.setDataFim(pessoaNomePeriodoForm.getDataFim());
-                    pessoaNomePeriodoHorasDto.setHorasGastas(horasGastas);
+                    pessoaNomePeriodoHorasDto.setTotalHorasGastas(horasGastas);
 
                     return pessoaNomePeriodoHorasDto;
                 })
