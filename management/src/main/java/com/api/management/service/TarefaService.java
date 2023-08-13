@@ -67,7 +67,7 @@ public class TarefaService {
             return tarefaDto;
         }
 
-        throw new IllegalArgumentException("Não é possível alocar uma pessoa de um departamento em uma tarefa de departamento diferente!");
+        throw new IllegalArgumentException("Não é possível alocar uma pessoa, pois não existe pessoas cadastradas com o mesmo departamento desta tarefa!");
     }
 
     public TarefaDto alocarPessoaParaTarefaEspecifica(Long tarefaId, Long pessoaId) {
