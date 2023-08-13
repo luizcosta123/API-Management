@@ -1,5 +1,8 @@
 # API-Management
 
+## Collection Postman (Clique para acessar os endpoints)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/23327087-d95d7560-ef0b-4e9c-84fa-9844a4016aab?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D23327087-d95d7560-ef0b-4e9c-84fa-9844a4016aab%26entityType%3Dcollection%26workspaceId%3D08fdd035-8650-414e-9d3c-7a4827205d4e)
+
 ## Entidades
 
 - pessoa (id, nome, departamento e lista de tarefas)
