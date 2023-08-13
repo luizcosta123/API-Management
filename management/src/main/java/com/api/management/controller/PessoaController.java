@@ -77,8 +77,8 @@ public class PessoaController {
      * com os dados das pessoas, nome, período, horas gastas e status HTTP 200 (OK).
      */
     @GetMapping("/gastos")
-    public ResponseEntity<List<PessoaNomePeriodoHorasDto>> getAllPessoaPeriodoHorasGastas(@RequestBody @Valid PessoaNomePeriodoForm pessoaNomePeriodoForm) {
-        return ResponseEntity.status(HttpStatus.OK).body(pessoaService.getAllPessoaPeriodoHorasGastas(pessoaNomePeriodoForm));
+    public ResponseEntity<List<PessoaNomePeriodoHorasDto>> findPessoaPeriodoHorasGastas(@RequestBody @Valid PessoaNomePeriodoForm pessoaNomePeriodoForm) {
+        return ResponseEntity.status(HttpStatus.OK).body(pessoaService.findAllPessoaPeriodoHorasGastas(pessoaNomePeriodoForm));
     }
 
 }
