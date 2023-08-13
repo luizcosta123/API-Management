@@ -30,7 +30,10 @@ public class TarefaService {
             Pessoa pessoaAlocada = pessoaRepository.findById(tarefaForm.getPessoaAlocada()).orElse(null);
 
             if (pessoaAlocada != null) {
-                tarefa.setPessoaAlocada(pessoaAlocada);
+                if(pessoaAlocada.getDepartamento() == tarefa.getDepartamento()) {
+                    tarefa.setPessoaAlocada(pessoaAlocada);
+                }
+                throw new IllegalArgumentException("Não é possível alocar uma pessoa de um departamento em uma tarefa de departamento diferente!");
             } else {
                 throw new IllegalArgumentException("Não existem pessoas registradas com o 'ID' informado, por favor cadastre a" +
                                                    "tarefa novamente com um ID de pessoa válido!");
