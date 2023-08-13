@@ -33,4 +33,4 @@
 
 ## Bancos de dados
 - PostgreSQL
-- Com o arquivo script.sql você pode importar o DB.
+- Com o arquivo script.sql você pode importar o DB com dados fictícios, porém o properties já está configurado para introduzir a estrutura do DB se você ainda não tiver a mesma, basta apenas ter criado um DB com o nome managementDB.
