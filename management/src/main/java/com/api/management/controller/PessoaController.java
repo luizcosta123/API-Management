@@ -36,7 +36,7 @@ public class PessoaController {
     /**
      * Atualiza os dados de uma pessoa existente.
      *
-     * @param id O ID da pessoa a ser atualizada.
+     * @param id         O ID da pessoa a ser atualizada.
      * @param pessoaForm Os novos dados da pessoa.
      * @return Um ResponseEntity contendo um objeto PessoaDto
      * com os dados atualizados da pessoa e status HTTP 200 (OK).
