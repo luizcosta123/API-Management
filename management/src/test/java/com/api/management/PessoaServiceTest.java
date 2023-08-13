@@ -83,7 +83,7 @@ public class PessoaServiceTest {
     }
 
     @Test
-    void update() {
+    void whenUpdateThenReturnAnModifiedPessoaDto() {
         Pessoa pessoaAlterada = new Pessoa();
         pessoaAlterada.setId(ID);
         pessoaAlterada.setNome("Afonso");
