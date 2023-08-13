@@ -33,3 +33,4 @@
 
 ## Bancos de dados
 - PostgreSQL
+- Com o arquivo script.sql você pode importar o DB.
