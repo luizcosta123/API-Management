@@ -30,15 +30,26 @@ public class TarefaController {
     }
 
     /**
-     * Aloca uma pessoa em uma tarefa.
+     * Aloca uma pessoa em uma tarefa específica.
      *
      * @param tarefaId O ID da tarefa na qual a pessoa será alocada.
      * @param pessoaId O ID da pessoa a ser alocada na tarefa.
      * @return Um ResponseEntity contendo um objeto TarefaDto com os dados atualizados da tarefa e status HTTP 200 (OK).
      */
     @PutMapping("/alocar/{tarefaId}/{pessoaId}")
-    public ResponseEntity<TarefaDto> alocarPessoa(@PathVariable Long tarefaId, @PathVariable Long pessoaId) {
-        return ResponseEntity.status(HttpStatus.OK).body(tarefaService.alocarPessoa(tarefaId, pessoaId));
+    public ResponseEntity<TarefaDto> alocarPessoaParaTarefaEspecifica(@PathVariable Long tarefaId, @PathVariable Long pessoaId) {
+        return ResponseEntity.status(HttpStatus.OK).body(tarefaService.alocarPessoaParaTarefaEspecifica(tarefaId, pessoaId));
+    }
+
+    /**
+     * Aloca uma pessoa em uma tarefa do mesmo departamento.
+     *
+     * @param tarefaId O ID da tarefa na qual a pessoa será alocada.
+     * @return Um ResponseEntity contendo um objeto TarefaDto com os dados atualizados da tarefa e status HTTP 200 (OK).
+     */
+    @PutMapping("/alocar/{tarefaId}")
+    public ResponseEntity<TarefaDto> alocarPessoaTarefa(@PathVariable Long tarefaId) {
+        return ResponseEntity.status(HttpStatus.OK).body(tarefaService.alocarPessoa(tarefaId));
     }
 
     /**
