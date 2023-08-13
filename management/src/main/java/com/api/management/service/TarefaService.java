@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,13 +31,13 @@ public class TarefaService {
             Pessoa pessoaAlocada = pessoaRepository.findById(tarefaForm.getPessoaAlocada()).orElse(null);
 
             if (pessoaAlocada != null) {
-                if(pessoaAlocada.getDepartamento() == tarefa.getDepartamento()) {
+                if (pessoaAlocada.getDepartamento() == tarefa.getDepartamento()) {
                     tarefa.setPessoaAlocada(pessoaAlocada);
                 }
                 throw new IllegalArgumentException("Não é possível alocar uma pessoa de um departamento em uma tarefa de departamento diferente!");
             } else {
                 throw new IllegalArgumentException("Não existem pessoas registradas com o 'ID' informado, por favor cadastre a" +
-                                                   "tarefa novamente com um ID de pessoa válido!");
+                        "tarefa novamente com um ID de pessoa válido!");
             }
         }
 
@@ -46,21 +47,44 @@ public class TarefaService {
         return tarefaDto;
     }
 
-    public TarefaDto alocarPessoa(Long tarefaId, Long pessoaId) {
+    public TarefaDto alocarPessoa(Long tarefaId) {
         Tarefa tarefa = tarefaRepository.findById(tarefaId).orElse(null);
-        Pessoa pessoaAlocada = pessoaRepository.findById(pessoaId).orElse(null);
 
-        if(pessoaAlocada == null) {
-            throw new IllegalArgumentException("Não foi possível encontrar o registro desta pessoa pelo 'ID' informado!");
-        } else if(tarefa == null) {
+        if (tarefa == null) {
             throw new IllegalArgumentException("Não foi possível encontrar o registro desta tarefa pelo 'ID' informado!");
         }
 
-        if(pessoaAlocada.getDepartamento() == tarefa.getDepartamento()) {
-                tarefa.setPessoaAlocada(pessoaAlocada);
-                tarefaRepository.save(tarefa);
-                TarefaDto tarefaDto = modelMapper.map(tarefa, TarefaDto.class);
-                return tarefaDto;
+        List<Pessoa> pessoaList = pessoaRepository.findByDepartamento(tarefa.getDepartamento()).stream()
+                .filter(pessoa -> pessoa.getDepartamento() == tarefa.getDepartamento()).collect(Collectors.toList());
+
+        if (!pessoaList.isEmpty()) {
+            Pessoa pessoaMenorListaTarefas = pessoaList.stream().min(Comparator
+                    .comparingInt(pessoa -> pessoa.getTarefaList().size())).get();
+
+            tarefa.setPessoaAlocada(pessoaMenorListaTarefas);
+            tarefaRepository.save(tarefa);
+            TarefaDto tarefaDto = modelMapper.map(tarefa, TarefaDto.class);
+            return tarefaDto;
+        }
+
+        throw new IllegalArgumentException("Não é possível alocar uma pessoa de um departamento em uma tarefa de departamento diferente!");
+    }
+
+    public TarefaDto alocarPessoaParaTarefaEspecifica(Long tarefaId, Long pessoaId) {
+        Tarefa tarefa = tarefaRepository.findById(tarefaId).orElse(null);
+        Pessoa pessoaAlocada = pessoaRepository.findById(pessoaId).orElse(null);
+
+        if (pessoaAlocada == null) {
+            throw new IllegalArgumentException("Não foi possível encontrar o registro desta pessoa pelo 'ID' informado!");
+        } else if (tarefa == null) {
+            throw new IllegalArgumentException("Não foi possível encontrar o registro desta tarefa pelo 'ID' informado!");
+        }
+
+        if (pessoaAlocada.getDepartamento() == tarefa.getDepartamento()) {
+            tarefa.setPessoaAlocada(pessoaAlocada);
+            tarefaRepository.save(tarefa);
+            TarefaDto tarefaDto = modelMapper.map(tarefa, TarefaDto.class);
+            return tarefaDto;
         }
 
         throw new IllegalArgumentException("Não é possível alocar uma pessoa de um departamento em uma tarefa de departamento diferente!");
@@ -69,9 +93,9 @@ public class TarefaService {
     public TarefaDto finalizarTarefa(Long id) {
         Tarefa tarefa = tarefaRepository.findById(id).orElse(null);
 
-        if(tarefa == null) {
+        if (tarefa == null) {
             throw new IllegalArgumentException("Não foi possível encontrar o registro desta tarefa pelo 'ID' informado!");
-        } else if(tarefa.isFinalizado()) {
+        } else if (tarefa.isFinalizado()) {
             throw new IllegalArgumentException("Está tarefa já está finalizada!");
         }
 
