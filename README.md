@@ -21,6 +21,8 @@
 
 - Alocar uma pessoa na tarefa que tenha o mesmo departamento => (put/tarefas/alocar/{id})
 
+- Alocar uma pessoa específica em uma tarefa específica que tenha o mesmo departamento => (put/tarefas/alocar/{id}/{id})
+
 - Finalizar a tarefa => (put/tarefas/finalizar/{id})
 
 - Listar pessoas trazendo nome, departamento, total horas gastas nas tarefas => (get/pessoas)
@@ -32,5 +34,13 @@
 - Listar departamento e quantidade de pessoas e tarefas => (get/departamentos)
 
 ## Bancos de dados
+
 - PostgreSQL
+  
 - Com o arquivo script.sql você pode importar o DB com dados fictícios, porém o properties já está configurado para introduzir a estrutura do DB se você ainda não tiver a mesma, basta apenas ter criado um DB com o nome managementDB.
+
+## Testes Unitários
+- Foram criados alguns exemplos de testes unitários para a aplicação.
+
+## Dúvidas
+- Se houver algum empecilho para executar a aplicação ou relacionado, pode me comunicar!
