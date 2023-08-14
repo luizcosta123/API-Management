@@ -40,7 +40,9 @@
 - Com o arquivo script.sql você pode importar o DB com dados fictícios, porém o properties já está configurado para introduzir a estrutura do DB se você ainda não tiver a mesma, basta apenas ter criado um DB com o nome managementDB.
 
 ## Testes Unitários
+
 - Foram criados alguns exemplos de testes unitários para a aplicação.
 
 ## Dúvidas
+
 - Se houver algum empecilho para executar a aplicação ou relacionado, pode me comunicar!
